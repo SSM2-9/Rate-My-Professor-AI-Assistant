@@ -1,0 +1,123 @@
+[
+    {
+      "professor": "Dr. John Smith",
+      "subject": "Introduction to Computing",
+      "stars": 4,
+      "review": "Dr. Smith is very knowledgeable and makes the lectures interesting. However, the exams are tough and require a lot of preparation."
+    },
+    {
+      "professor": "Dr. Emily Johnson",
+      "subject": "Digital Logic Design",
+      "stars": 5,
+      "review": "Dr. Johnson is an amazing professor! She explains concepts very clearly and provides plenty of resources for practice. Highly recommended."
+    },
+    {
+      "professor": "Dr. Michael Brown",
+      "subject": "Data Structures and Algorithms",
+      "stars": 3,
+      "review": "The course content is good, but Dr. Brown's teaching style can be a bit dry. Sometimes it’s hard to stay engaged during his lectures."
+    },
+    {
+      "professor": "Dr. Sarah Lee",
+      "subject": "Analog Integrated Circuits",
+      "stars": 2,
+      "review": "Dr. Lee is very strict and her exams are really difficult. It's hard to get a good grade in her class unless you spend a lot of time studying on your own."
+    },
+    {
+      "professor": "Dr. Robert Davis",
+      "subject": "Software Engineering",
+      "stars": 5,
+      "review": "One of the best professors I've had. Dr. Davis is very approachable and always willing to help students. His lectures are engaging and informative."
+    },
+    {
+      "professor": "Dr. Jessica Wilson",
+      "subject": "Machine Learning",
+      "stars": 4,
+      "review": "Dr. Wilson is great at explaining complex topics in an easy-to-understand way. The course is challenging, but you learn a lot."
+    },
+    {
+      "professor": "Dr. William Martinez",
+      "subject": "Operating Systems",
+      "stars": 1,
+      "review": "I did not enjoy this class. Dr. Martinez is often disorganized, and it’s hard to follow his lectures. The assignments were confusing and poorly explained."
+    },
+    {
+      "professor": "Dr. Jennifer Clark",
+      "subject": "Computer Networks",
+      "stars": 3,
+      "review": "Dr. Clark is an average professor. Her lectures are okay, but sometimes she moves too fast. The material is interesting but could be better presented."
+    },
+    {
+      "professor": "Dr. David Lewis",
+      "subject": "Artificial Intelligence",
+      "stars": 5,
+      "review": "Absolutely loved this course! Dr. Lewis is incredibly passionate about AI and it shows in his teaching. I learned so much and would take another class with him in a heartbeat."
+    },
+    {
+      "professor": "Dr. Linda Walker",
+      "subject": "Database Systems",
+      "stars": 4,
+      "review": "Dr. Walker is a good professor who knows her stuff. Her lectures are detailed and well-organized, but make sure to keep up with the readings."
+    },
+    {
+      "professor": "Dr. Thomas Robinson",
+      "subject": "Computer Architecture",
+      "stars": 2,
+      "review": "Dr. Robinson’s lectures can be quite monotonous, and his exams are unexpectedly difficult. Not the best experience overall."
+    },
+    {
+      "professor": "Dr. Susan Martinez",
+      "subject": "Linear Algebra",
+      "stars": 4,
+      "review": "Dr. Martinez is thorough and her classes are very structured. Sometimes her pace is a bit fast, but overall, she’s a great teacher."
+    },
+    {
+      "professor": "Dr. Richard Harris",
+      "subject": "Probability and Statistics",
+      "stars": 5,
+      "review": "Dr. Harris makes statistics fascinating! His enthusiasm is contagious, and he really cares about his students’ understanding."
+    },
+    {
+      "professor": "Dr. Elizabeth King",
+      "subject": "Advanced Calculus",
+      "stars": 1,
+      "review": "Dr. King is difficult to follow and her exams do not reflect the material taught in lectures. Would not recommend taking her class."
+    },
+    {
+      "professor": "Dr. Charles Green",
+      "subject": "Computer Graphics",
+      "stars": 3,
+      "review": "Dr. Green has good knowledge but is not very engaging. His lectures are a bit boring, but the course material is interesting."
+    },
+    {
+      "professor": "Dr. Karen White",
+      "subject": "Discrete Mathematics",
+      "stars": 5,
+      "review": "Dr. White is amazing! She makes discrete math fun and approachable, and her assignments are very helpful for understanding the material."
+    },
+    {
+      "professor": "Dr. George Thompson",
+      "subject": "Software Testing",
+      "stars": 4,
+      "review": "Dr. Thompson’s class is challenging but rewarding. He provides plenty of examples and practice problems to help with understanding."
+    },
+    {
+      "professor": "Dr. Patricia Evans",
+      "subject": "Web Development",
+      "stars": 3,
+      "review": "Dr. Evans knows her stuff, but her lectures could use more structure. The projects are useful, but the class lacks engagement."
+    },
+    {
+      "professor": "Dr. Steven Nelson",
+      "subject": "Human-Computer Interaction",
+      "stars": 5,
+      "review": "Dr. Nelson is fantastic! His class is interactive and really opens your eyes to the nuances of designing user interfaces."
+    },
+    {
+      "professor": "Dr. Anna Baker",
+      "subject": "Cryptography",
+      "stars": 2,
+      "review": "Dr. Baker’s lectures are quite dry, and her teaching style is not very engaging. It’s hard to stay focused in her class."
+    }
+  ]
+  
