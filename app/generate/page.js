@@ -77,7 +77,7 @@ export default function Home() {
     >
       <Stack
         direction={'column'}
-        width="500px"
+        width="1000px"
         height="700px"
         border="1px solid black"
         p={2}
@@ -105,8 +105,8 @@ export default function Home() {
               <Box
                 bgcolor={
                   message.role === 'assistant'
-                    ? 'primary.main'
-                    : 'secondary.main'
+                    ? 'rgb(0, 0, 0)'
+                    : 'rgb(0, 227, 178)'
                 }
                 color="white"
                 borderRadius={16}
