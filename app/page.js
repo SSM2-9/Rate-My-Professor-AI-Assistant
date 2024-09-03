@@ -16,9 +16,13 @@ export default function Home() {
     <>
       <AppBar position="static" sx={{ backgroundColor: 'rgba(0, 0, 0)' }}>
         <Toolbar>
-          <Typography variant="h5" style={{ flexGrow: 1 }} className="bangers" sx={{ fontFamily: 'Montserrat, sans-serif' }}>
-            rate my prof
-          </Typography>
+          <Link href="/app" passHref>
+            <Button>
+              <Typography variant="h5" sx={{ fontFamily: 'Montserrat, sans-serif', color: 'rgb(255, 255, 255)'}} style={{ flexGrow: 1 }}>
+                RateMyMentor @ HeadstarterAI
+              </Typography>
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
 
@@ -50,10 +54,10 @@ export default function Home() {
           color: 'white', // Ensure text color contrasts against the background
         }}>
           <Typography variant="h2" component="h1" gutterBottom className='bangers' sx={{ fontFamily: 'Montserrat, sans-serif' }}>
-            Welcome to RateMyMentor@HeadstarterAI
+            Welcome to RateMyMentor @ HeadstarterAI
           </Typography>
-          <Typography variant="h5" component="h2" gutterBottom sx={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
-            Where Comic 
+          <Typography variant="h5" component="h2" gutterBottom sx={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 500 }}>
+            Connecting mentees with top-rated HeadstarterAI mentors for an unparalleled learning experience.
           </Typography>
           <Link href="/generate" passHref>
             <Button
@@ -67,7 +71,7 @@ export default function Home() {
                   transform: 'scale(1.05)',
                 },
                 color: 'rgba(0, 0, 0)',
-                fontFamily: 'Lato, sans-serif',
+                fontFamily: 'Montserrat, sans-serif',
                 fontWeight: 700,
               }}
               onClick={handleClick_1}
