@@ -1,65 +1,14 @@
 'use client'
-import { Box, Button, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, Stack, TextField } from '@mui/material'
 import { useState } from 'react'
 
 export default function Home() {
-  const [messages, setMessages] = useState([
-    {
-      role: 'assistant',
-      content: `Hi! I'm the Rate My Professor support assistant. How can I help you today?`,
-    },
-  ])
-  const [message, setMessage] = useState('')
+  const router = useRouter();
 
-  const sendMessage = async () => {
-    if (message.trim() === '') return // Prevent sending empty messages
-
-    setMessage('')
-    setMessages((messages) => [
-      ...messages,
-      { role: 'user', content: message },
-      { role: 'assistant', content: '' },
-    ])
-
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify([...messages, { role: 'user', content: message }]),
-      })
-
-      const reader = response.body.getReader()
-      const decoder = new TextDecoder()
-      let result = ''
-
-      reader.read().then(function processText({ done, value }) {
-        if (done) {
-          return result
-        }
-        const text = decoder.decode(value || new Uint8Array(), { stream: true })
-        setMessages((messages) => {
-          let lastMessage = messages[messages.length - 1]
-          let otherMessages = messages.slice(0, messages.length - 1)
-          return [
-            ...otherMessages,
-            { ...lastMessage, content: lastMessage.content + text },
-          ]
-        })
-        return reader.read().then(processText)
-      })
-    } catch (error) {
-      console.error("Error fetching chat response:", error)
-      setMessages((messages) => [
-        ...messages,
-        {
-          role: 'assistant',
-          content: "Sorry, there was an error processing your request.",
-        },
-      ])
-    }
-  }
+  const handleClick_1 = () => {
+    // Navigate to the /generate page
+    router.push('/generate');
+  };
 
   return (
     <Box
@@ -70,36 +19,21 @@ export default function Home() {
       justifyContent="center"
       alignItems="center"
       sx={{
-        background: 'linear-gradient(135deg, #00E3B2, #000000, #000000, #8EFCE4)',
+        background: 'linear-gradient(290deg, #213363, #000000)',
         backgroundSize: '400% 400%',
-        animation: 'gradientAnimation 15s ease infinite',
+        animation: 'gradientAnimation 15s ease infinite'
       }}
     >
-      {/* Header */}
-      <Box
-        width="100%"
-        py={4}
-        bgcolor="black"
-        color="white"
-        display="flex"
-        justifyContent="center"
-      >
-        <Typography variant="h4">Rate My Professor - Chat Assistant</Typography>
-      </Box>
-
-      {/* Chat Container */}
       <Stack
         direction={'column'}
         width="500px"
-        height="600px"
+        height="700px"
         border="1px solid black"
         p={2}
-        m={2}
         spacing={3}
         sx={{
-          backgroundColor: 'black',
-          borderRadius: 2,
-          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)', // Optional: Makes the chat container semi-transparent
+          borderRadius: 2
         }}
       >
         <Stack
@@ -108,11 +42,6 @@ export default function Home() {
           flexGrow={1}
           overflow="auto"
           maxHeight="100%"
-          sx={{
-            padding: '10px',
-            backgroundColor: '#1A1A1A',
-            borderRadius: 2,
-          }}
         >
           {messages.map((message, index) => (
             <Box
@@ -123,13 +52,14 @@ export default function Home() {
               }
             >
               <Box
-                sx={{
-                  backgroundColor:
-                    message.role === 'assistant' ? '#00E3B2' : '#FFFFFF',
-                  color: message.role === 'assistant' ? 'black' : 'black',
-                  borderRadius: 2,
-                  padding: '10px 15px',
-                }}
+                bgcolor={
+                  message.role === 'assistant'
+                    ? 'primary.main'
+                    : 'secondary.main'
+                }
+                color="white"
+                borderRadius={16}
+                p={3}
               >
                 {message.content}
               </Box>
@@ -142,14 +72,6 @@ export default function Home() {
             fullWidth
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            sx={{
-              input: { color: 'white' },
-              '& .MuiInputLabel-root': { color: 'white' },
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': { borderColor: 'white' },
-                '&:hover fieldset': { borderColor: '#00E3B2' },
-              },
-            }}
           />
           <Button variant="contained" onClick={sendMessage}>
             Send
@@ -157,7 +79,6 @@ export default function Home() {
         </Stack>
       </Stack>
 
-      {/* Add the keyframes for the gradient animation */}
       <style jsx global>{`
         @keyframes gradientAnimation {
           0% {
