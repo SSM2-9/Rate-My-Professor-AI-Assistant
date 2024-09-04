@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 load_dotenv()
 from pinecone import Pinecone, ServerlessSpec
-from openai import OpenAI
+from google.generativeai import GoogleGenerativeAI
 import os
 import json
 
@@ -20,7 +20,7 @@ pc.create_index(
 data = json.load(open("reviews.json"))
 
 processed_data = []
-client = OpenAI()
+client = GoogleGenerativeAI()
 
 # Create embeddings for each review
 for review in data["reviews"]:

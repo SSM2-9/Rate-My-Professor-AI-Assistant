@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Pinecone } from "@pinecone-database/pinecone";
-import OpenAI from "openai";
+import {GoogleGenerativeAI} from "@google/generative-ai";
 
 const systemPrompt = `
 You are a rate my professor agent to help students find classes, that takes in user questions and answers them.
@@ -12,12 +12,12 @@ export async function POST(req) {
     apiKey: process.env.PINECONE_API_KEY,
   });
   const index = pc.index("rag").namespace("ns1");
-  const openai = new OpenAI();
+  const genai = new GoogleGenerativeAI();
 
   const data = await req.json();
 
   const text = data[data.length - 1].content;
-  const embedding = await openai.embeddings.create({
+  const embedding = await genai.embeddings.create({
     model: "text-embedding-3-small",
     input: text,
     encoding_format: "float",
@@ -44,13 +44,13 @@ export async function POST(req) {
   const lastMessageContent = lastMessage.content + resultString;
   const lastDataWithoutLastMessage = data.slice(0, data.length - 1);
 
-  const completion = await openai.chat.completions.create({
+  const completion = await genai.chat.completions.create({
     messages: [
       {role: 'system', content: systemPrompt},
       ...lastDataWithoutLastMessage,
       {role: 'user', content: lastMessageContent},
     ],
-    model: 'gpt-3.5-turbo',
+    model: 'gemini-1.5-flash',
     stream: true,
   })
 
