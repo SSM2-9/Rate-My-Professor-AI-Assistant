@@ -1,5 +1,5 @@
 'use client'
-import { Box, Button, Stack, TextField } from '@mui/material'
+import { Box, Button, Stack, TextField, Typography } from '@mui/material'
 import { useState } from 'react'
 
 export default function Home() {
@@ -70,21 +70,36 @@ export default function Home() {
       justifyContent="center"
       alignItems="center"
       sx={{
-        background: 'linear-gradient(290deg, #213363, #000000)',
+        background: 'linear-gradient(135deg, #00E3B2, #000000, #000000, #8EFCE4)',
         backgroundSize: '400% 400%',
-        animation: 'gradientAnimation 15s ease infinite'
+        animation: 'gradientAnimation 15s ease infinite',
       }}
     >
+      {/* Header */}
+      <Box
+        width="100%"
+        py={4}
+        bgcolor="black"
+        color="white"
+        display="flex"
+        justifyContent="center"
+      >
+        <Typography variant="h4">Rate My Professor - Chat Assistant</Typography>
+      </Box>
+
+      {/* Chat Container */}
       <Stack
         direction={'column'}
         width="500px"
-        height="700px"
+        height="600px"
         border="1px solid black"
         p={2}
+        m={2}
         spacing={3}
         sx={{
-          backgroundColor: 'rgba(255, 255, 255, 0.8)', // Optional: Makes the chat container semi-transparent
-          borderRadius: 2
+          backgroundColor: 'black',
+          borderRadius: 2,
+          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)',
         }}
       >
         <Stack
@@ -93,6 +108,11 @@ export default function Home() {
           flexGrow={1}
           overflow="auto"
           maxHeight="100%"
+          sx={{
+            padding: '10px',
+            backgroundColor: '#1A1A1A',
+            borderRadius: 2,
+          }}
         >
           {messages.map((message, index) => (
             <Box
@@ -103,14 +123,13 @@ export default function Home() {
               }
             >
               <Box
-                bgcolor={
-                  message.role === 'assistant'
-                    ? 'primary.main'
-                    : 'secondary.main'
-                }
-                color="white"
-                borderRadius={16}
-                p={3}
+                sx={{
+                  backgroundColor:
+                    message.role === 'assistant' ? '#00E3B2' : '#FFFFFF',
+                  color: message.role === 'assistant' ? 'black' : 'black',
+                  borderRadius: 2,
+                  padding: '10px 15px',
+                }}
               >
                 {message.content}
               </Box>
@@ -123,6 +142,14 @@ export default function Home() {
             fullWidth
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            sx={{
+              input: { color: 'white' },
+              '& .MuiInputLabel-root': { color: 'white' },
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': { borderColor: 'white' },
+                '&:hover fieldset': { borderColor: '#00E3B2' },
+              },
+            }}
           />
           <Button variant="contained" onClick={sendMessage}>
             Send
@@ -130,6 +157,7 @@ export default function Home() {
         </Stack>
       </Stack>
 
+      {/* Add the keyframes for the gradient animation */}
       <style jsx global>{`
         @keyframes gradientAnimation {
           0% {
