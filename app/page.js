@@ -1,6 +1,7 @@
 'use client'
 import { Box, Button, Stack, TextField } from '@mui/material'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const router = useRouter();
@@ -9,6 +10,23 @@ export default function Home() {
     // Navigate to the /generate page
     router.push('/generate');
   };
+  const [messages, setMessages] = useState([
+    {
+      role: 'assistant',
+      content: `Hi! I'm the Rate My Professor support assistant. How can I help you today?`,
+    },
+  ])
+  const [message, setMessage] = useState('')
+
+  const sendMessage = async () => {
+    if (message.trim() === '') return // Prevent sending empty messages
+
+    setMessage('')
+    setMessages((messages) => [
+      ...messages,
+      { role: 'user', content: message },
+      { role: 'assistant', content: '' },
+    ])
 
   return (
     <Box
@@ -94,4 +112,4 @@ export default function Home() {
       `}</style>
     </Box>
   )
-}
+}}

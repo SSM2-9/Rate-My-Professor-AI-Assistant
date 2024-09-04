@@ -18,8 +18,8 @@ export async function POST(req) {
     const data = await req.json();
 
   const text = data[data.length - 1].content;
-  const embedding = await openai.embeddings.create({
-    model: "text-embedding-3-small",
+  const embedding = await genai.embeddings.create({
+    model: "gemini-1.5-flash",
     input: text,
     encoding_format: "float",
   });
@@ -45,7 +45,7 @@ export async function POST(req) {
     const lastMessageContent = lastMessage.content + resultString;
     const lastDataWithoutLastMessage = data.slice(0, data.length - 1);
 
-  const completion = await openai.chat.completions.create({
+  const completion = await genai.chat.completions.create({
     messages: [
       {role: 'system', content: systemPrompt},
       ...lastDataWithoutLastMessage,

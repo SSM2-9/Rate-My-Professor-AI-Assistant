@@ -1,4 +1,5 @@
-[
+{
+  "reviews": [
     {
       "professor": "Dr. John Smith",
       "subject": "Introduction to Computing",
@@ -120,4 +121,4 @@
       "review": "Dr. Baker’s lectures are quite dry, and her teaching style is not very engaging. It’s hard to stay focused in her class."
     }
   ]
-  
+} 
