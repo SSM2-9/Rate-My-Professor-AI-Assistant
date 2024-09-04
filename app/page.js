@@ -1,7 +1,8 @@
 'use client'
-import { Box, Button, Stack, TextField } from '@mui/material'
-import { useState } from 'react'
+
 import { useRouter } from 'next/navigation';
+import { Box, Typography, Button, AppBar, Toolbar } from "@mui/material";
+import Link from 'next/link';
 
 export default function Home() {
   const router = useRouter();
@@ -10,106 +11,76 @@ export default function Home() {
     // Navigate to the /generate page
     router.push('/generate');
   };
-  const [messages, setMessages] = useState([
-    {
-      role: 'assistant',
-      content: `Hi! I'm the Rate My Professor support assistant. How can I help you today?`,
-    },
-  ])
-  const [message, setMessage] = useState('')
-
-  const sendMessage = async () => {
-    if (message.trim() === '') return // Prevent sending empty messages
-
-    setMessage('')
-    setMessages((messages) => [
-      ...messages,
-      { role: 'user', content: message },
-      { role: 'assistant', content: '' },
-    ])
 
   return (
-    <Box
-      width="100vw"
-      height="100vh"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      sx={{
-        background: 'linear-gradient(290deg, #213363, #000000)',
-        backgroundSize: '400% 400%',
-        animation: 'gradientAnimation 15s ease infinite'
-      }}
-    >
-      <Stack
-        direction={'column'}
-        width="500px"
-        height="700px"
-        border="1px solid black"
-        p={2}
-        spacing={3}
-        sx={{
-          backgroundColor: 'rgba(255, 255, 255, 0.8)', // Optional: Makes the chat container semi-transparent
-          borderRadius: 2
-        }}
-      >
-        <Stack
-          direction={'column'}
-          spacing={2}
-          flexGrow={1}
-          overflow="auto"
-          maxHeight="100%"
-        >
-          {messages.map((message, index) => (
-            <Box
-              key={index}
-              display="flex"
-              justifyContent={
-                message.role === 'assistant' ? 'flex-start' : 'flex-end'
-              }
-            >
-              <Box
-                bgcolor={
-                  message.role === 'assistant'
-                    ? 'primary.main'
-                    : 'secondary.main'
-                }
-                color="white"
-                borderRadius={16}
-                p={3}
-              >
-                {message.content}
-              </Box>
-            </Box>
-          ))}
-        </Stack>
-        <Stack direction={'row'} spacing={2}>
-          <TextField
-            label="Message"
-            fullWidth
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          <Button variant="contained" onClick={sendMessage}>
-            Send
-          </Button>
-        </Stack>
-      </Stack>
+    <>
+      <AppBar position="static" sx={{ backgroundColor: 'rgba(0, 0, 0)' }}>
+        <Toolbar>
+          <Link href="/app" passHref>
+            <Button>
+              <Typography variant="h5" sx={{ fontFamily: 'Montserrat, sans-serif', color: 'rgb(255, 255, 255)'}} style={{ flexGrow: 1 }}>
+                RateMyMentor @ HeadstarterAI
+              </Typography>
+            </Button>
+          </Link>
+        </Toolbar>
+      </AppBar>
 
-      <style jsx global>{`
-        @keyframes gradientAnimation {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-      `}</style>
-    </Box>
-  )
-}}
+      <Box sx={{ 
+        textAlign: 'center', 
+        position: 'relative', 
+        overflow: 'hidden', 
+        height: 780, 
+        backgroundColor: 'rgb(0,0,0)', 
+      }}>
+        <img
+          src="/main.gif"
+          alt="Background GIF"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: 0.4,
+            zIndex: 1,  // Ensure the GIF is behind the content
+          }}
+        />
+        <Box sx={{
+          position: 'relative', 
+          padding: 30, 
+          zIndex: 2,  // Ensure the content is in front of the GIF
+          color: 'white', // Ensure text color contrasts against the background
+        }}>
+          <Typography variant="h2" component="h1" gutterBottom className='bangers' sx={{ fontFamily: 'Montserrat, sans-serif' }}>
+            Welcome to RateMyMentor @ HeadstarterAI
+          </Typography>
+          <Typography variant="h5" component="h2" gutterBottom sx={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 500 }}>
+            Connecting mentees with top-rated HeadstarterAI mentors for an unparalleled learning experience.
+          </Typography>
+          <Link href="/generate" passHref>
+            <Button
+              variant="contained"
+              sx={{
+                mt: 2,
+                mr: 2,
+                backgroundColor: 'rgb(0, 227, 178)',
+                '&:hover': {
+                  backgroundColor: 'rgba(142, 252, 228)',
+                  transform: 'scale(1.05)',
+                },
+                color: 'rgba(0, 0, 0)',
+                fontFamily: 'Montserrat, sans-serif',
+                fontWeight: 700,
+              }}
+              onClick={handleClick_1}
+            >
+              Get Started
+            </Button>
+          </Link>
+        </Box>
+      </Box>
+    </>
+  );
+}
