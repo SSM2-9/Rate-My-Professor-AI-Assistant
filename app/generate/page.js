@@ -1,6 +1,7 @@
 'use client'
-import { Box, Button, Stack, TextField } from '@mui/material'
-import { useState } from 'react'
+import { Box, Button, Stack, TextField, AppBar, Toolbar, Typography} from '@mui/material';
+import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   const [messages, setMessages] = useState([
@@ -62,6 +63,19 @@ export default function Home() {
   }
 
   return (
+    <>
+    <AppBar position="static" sx={{ backgroundColor: 'rgba(0, 0, 0)' }}>
+        <Toolbar>
+          <Link href="/app" passHref>
+            <Button>
+              <Typography variant="h5" sx={{ fontFamily: 'Montserrat, sans-serif', color: 'rgb(255, 255, 255)'}} style={{ flexGrow: 1 }}>
+                RateMyMentor @ HeadstarterAI
+              </Typography>
+            </Button>
+          </Link>
+        </Toolbar>
+      </AppBar>
+
     <Box
       width="100vw"
       height="100vh"
@@ -77,7 +91,7 @@ export default function Home() {
     >
       <Stack
         direction={'column'}
-        width="500px"
+        width="1000px"
         height="700px"
         border="1px solid black"
         p={2}
@@ -103,10 +117,11 @@ export default function Home() {
               }
             >
               <Box
+                sx={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600,}}
                 bgcolor={
                   message.role === 'assistant'
-                    ? 'primary.main'
-                    : 'secondary.main'
+                    ? 'rgb(0, 0, 0)'
+                    : 'rgb(0, 227, 178)'
                 }
                 color="white"
                 borderRadius={16}
@@ -119,12 +134,17 @@ export default function Home() {
         </Stack>
         <Stack direction={'row'} spacing={2}>
           <TextField
+            sx={{ fontFamily: 'Montserrat, sans-serif'}}
             label="Message"
             fullWidth
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <Button variant="contained" onClick={sendMessage}>
+          <Button variant="contained" onClick={sendMessage} sx={{ fontFamily: 'Montserrat, sans-serif', backgroundColor: 'rgb(0, 227, 178)',
+                '&:hover': {
+                  backgroundColor: 'rgba(142, 252, 228)',
+                  transform: 'scale(1.05)',
+                },}}>
             Send
           </Button>
         </Stack>
@@ -144,5 +164,6 @@ export default function Home() {
         }
       `}</style>
     </Box>
+    </>
   )
 }
