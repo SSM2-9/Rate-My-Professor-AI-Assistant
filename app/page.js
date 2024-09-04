@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <AppBar position="static" sx={{ backgroundColor: 'rgba(0, 0, 0)' }}>
         <Toolbar>
-          <Link href="/app" passHref>
+          <Link href="/" passHref>
             <Button>
               <Typography variant="h5" sx={{ fontFamily: 'Montserrat, sans-serif', color: 'rgb(255, 255, 255)'}} style={{ flexGrow: 1 }}>
                 RateMyMentor @ HeadstarterAI
