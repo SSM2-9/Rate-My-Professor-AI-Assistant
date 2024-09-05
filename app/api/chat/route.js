@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Pinecone } from "@pinecone-database/pinecone";
-import {GoogleGenerativeAI} from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const systemPrompt = `
 You are a rate my professor agent to help students find classes, that takes in user questions and answers them.
@@ -9,20 +9,20 @@ Use them to answer the question if needed.
 `;
 
 export async function POST(req) {
-  const pc = new Pinecone({
-    apiKey: process.env.PINECONE_API_KEY,
-  });
-  const index = pc.index("rag").namespace("ns1");
-  const genai = new GoogleGenerativeAI();
+  try {
+    const pc = new Pinecone({
+      apiKey: process.env.PINECONE_API_KEY,
+    });
+    const index = pc.index("rag").namespace("ns1");
+    const genai = new GoogleGenerativeAI();
 
     const data = await req.json();
-
-  const text = data[data.length - 1].content;
-  const embedding = await genai.embeddings.create({
-    model: "gemini-1.5-flash",
-    input: text,
-    encoding_format: "float",
-  });
+    const text = data[data.length - 1].content;
+    const embedding = await genai.embeddings.create({
+      model: "gemini-1.5-flash",
+      input: text,
+      encoding_format: "float",
+    });
 
     const results = await index.query({
       topK: 5,
@@ -45,15 +45,15 @@ export async function POST(req) {
     const lastMessageContent = lastMessage.content + resultString;
     const lastDataWithoutLastMessage = data.slice(0, data.length - 1);
 
-  const completion = await genai.chat.completions.create({
-    messages: [
-      {role: 'system', content: systemPrompt},
-      ...lastDataWithoutLastMessage,
-      {role: 'user', content: lastMessageContent},
-    ],
-    model: 'gemini-1.5-flash',
-    stream: true,
-  })
+    const completion = await genai.chat.completions.create({
+      messages: [
+        { role: 'system', content: systemPrompt },
+        ...lastDataWithoutLastMessage,
+        { role: 'user', content: lastMessageContent },
+      ],
+      model: 'gemini-1.5-flash',
+      stream: true,
+    });
 
     const stream = new ReadableStream({
       async start(controller) {
@@ -76,7 +76,7 @@ export async function POST(req) {
 
     return new NextResponse(stream);
 
-  } catch(error) {
+  } catch (error) {
     console.error("Error in POST handler:", error);
 
     // Check for specific error related to rate limiting or quota
@@ -97,5 +97,4 @@ export async function POST(req) {
       { status: 500 }
     );
   }
-
-
+}
